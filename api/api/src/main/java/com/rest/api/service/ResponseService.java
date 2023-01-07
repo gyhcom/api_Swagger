@@ -1,5 +1,6 @@
 package com.rest.api.service;
 
+import com.rest.api.model.response.CommonResult;
 import com.rest.api.model.response.ListResult;
 import com.rest.api.model.response.SingleResult;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,13 @@ public class ResponseService {
             SingleResult<T> result = new SingleResult<>();
             result.setData(data);
             setSuccessResult(result);
+            return result;
+        }
+
+        public void setSuccessResult(CommonResult result) {
+            result.setSuccess(true);
+            result.setCode(CommonResponse.SUCCESS.getCode());
+            result.setMsg(CommonResponse.SUCCESS.getMsg());
         }
 
         public <T>ListResult<T> getListResult(List<T> list){
